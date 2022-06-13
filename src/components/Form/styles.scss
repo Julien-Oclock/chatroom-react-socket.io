@@ -1,0 +1,21 @@
+@import'../../styles/vars';
+
+.form{
+
+  display: flex;
+  &__input{
+    height: 5em;
+    border: none;
+    flex:1;
+    padding: 2em;
+  }
+  &__button{
+    color: $normal-blue;
+    border: 0;
+    background-color : white;
+    width : 3.5rem;
+    :hover{
+      color: $dark-blue;
+    }
+  }
+}

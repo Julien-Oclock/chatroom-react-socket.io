@@ -1,0 +1,73 @@
+@import'../../styles/vars';
+
+
+@keyframes pop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+   transform: scale(1);
+   opacity: 1;
+  }
+}
+
+.messages {
+  padding: 2em;
+  scroll-behavior: smooth;
+  flex: 1;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  .message {
+    text-align: right;
+    margin-bottom: 2rem;
+    color: $normal-blue;
+    animation: pop 0.8s cubic-bezier(0.18, 1.06, 0.64, 1.02);
+
+
+    &__author {
+      margin: 1rem;
+      display: block;
+      position: relative;
+      
+      &::after {
+        content: "";
+        margin-left: auto;
+        position: absolute;
+        right: 1em;
+        display: block;
+        width:0;
+        border-bottom: 1rem solid white;
+        border-left: 1rem solid transparent;
+      }
+    }
+
+    &__content {
+      background-color: $light-color;
+      padding: 1.5em;
+      display: inline-block;
+      border-radius: 2rem;
+      max-width: 75%;
+      box-shadow: 5px 2px 10px rgba(0,0,0, .1);
+    }
+
+    &--other {
+      text-align: left;
+      & .message__content {
+        background: $dark-blue;
+        color: $light-blue;
+      }
+      & .message__author {
+        &::after {
+          left: 1em;
+          right: auto;
+          border-bottom-color: $dark-blue;
+        }
+      }
+    }
+  }
+}
+
+
