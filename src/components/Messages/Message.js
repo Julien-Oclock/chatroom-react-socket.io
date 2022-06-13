@@ -11,7 +11,7 @@ function Message( {author, message, isOther}) {
           { author }
       </div>
       <div className="message__content">
-          { message}
+          { message }
       </div>
     </div>
   );

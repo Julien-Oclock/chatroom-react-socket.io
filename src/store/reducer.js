@@ -1,15 +1,24 @@
 import{
   SET_MESSAGE_VALUE,
-  SEND_NEW_MESSAGE
+  SEND_NEW_MESSAGE,
+  TOGGLE_SETTINGS,
+  SET_FIELD_VALUE,
+
 } from 'src/actions'
  import { getHighestId } from 'src/selector';
 
 const INITIAL_STATE ={
+
+  settings: {
+    open: false,
+    email : '',
+    password : '',
+  },
    user : {
      email : '',
      password : '',
    },
-
+  pseudo : 'Me',
   currentMessage:'',
   messages : [
     {id:1, author: 'Super Chat bot', message: 'Hello world !', isOther :true},
@@ -35,13 +44,29 @@ const reducer = (state = INITIAL_STATE, action) => {
           [...state.messages,
           {
             id:getHighestId(state.messages)+1,
-            author : 'Me',
+            author : state.pseudo,
             message: state.currentMessage,
-            isOther : false,
           }
         ],
         currentMessage : ''
-      }
+      };
+      case  TOGGLE_SETTINGS :
+        return{
+          ...state,
+          settings :{
+            ...state.settings,
+            open : !state.settings.open,
+          }
+        };
+      case SET_FIELD_VALUE : 
+        return{
+          ...state,
+          settings : {
+            ...state.settings,
+            [action.inputName] : action.value
+          }
+        };
+
     default:
       return state
   }
