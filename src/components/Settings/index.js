@@ -5,13 +5,17 @@ import './styles.scss';
 
 import InputField from 'src/containers/settings/InputField';
 
-const Settings = ({open, openToggle}) => {
+const Settings = ({open, openToggle, onLogin}) => {
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    onLogin()
+  }
 
   return (
     <div className={classNames('settings',{'settings--active':open})}>
       <button type="button" onClick={openToggle} className="settings__button">+</button>
-      <form className="settings__form">
+      <form className="settings__form" onClick={handleSubmit}>
         <InputField type="text" placeholder="ton pseudo" inputName="pseudo" />
         <InputField type="email" placeholder="mail.." inputName="email" />
         <InputField type="password" placeholder="enter your password.." inputName="password" />
@@ -24,13 +28,14 @@ const Settings = ({open, openToggle}) => {
 Settings.propTypes = {
   open: PropTypes.bool,
   openToggle: PropTypes.func,
+  onLogin : PropTypes.func
 }
 
 Settings.defaultProps ={
   open: false,
-  openToggle: () => {
-
-  }
+  openToggle: () => {},
+  onLogin : () => {}
+  
 }
 
 export default Settings;

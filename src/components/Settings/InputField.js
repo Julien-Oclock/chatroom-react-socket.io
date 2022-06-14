@@ -6,13 +6,19 @@ import './styles.scss';
 
 
 
-const  InputField = ({inputValue, setFieldValue, inputName,...props}) => (
-      <input 
-        {...props}
-        name={inputName}
-        value={inputValue}
-        onChange = {(event) => setFieldValue(event.target.value)}/>
-)
+const  InputField = ({inputValue, setFieldValue, inputName,...props}) => {
+
+ 
+  return (
+    <input 
+      {...props}
+      name={inputName}
+      value={inputValue}
+      onChange = {(event) => setFieldValue(event.target.value)}
+    />
+  )
+      
+}
 
 InputField.propTypes = {
   inputName : PropTypes.string.isRequired,

@@ -8,6 +8,7 @@ const mapSateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   openToggle: () => dispatch(toggleSettings()),
+  onLogin : () => {}
 });
 
 export default connect(mapSateToProps, mapDispatchToProps)(Settings);
