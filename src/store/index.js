@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import { legacy_createStore as createStore, applyMiddleware, compose} from 'redux'
 import authMiddleware from 'src/Middleware/auth'
 import reducer from './reducer'

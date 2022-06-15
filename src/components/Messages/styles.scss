@@ -1,5 +1,4 @@
-@import'../../styles/vars';
-
+@use 'src/styles/vars';
 
 @keyframes pop {
   0% {
@@ -23,8 +22,8 @@
   .message {
     text-align: right;
     margin-bottom: 2rem;
-    color: $normal-blue;
-    animation: pop 0.8s cubic-bezier(0.18, 1.06, 0.64, 1.02);
+    color: vars.$normal-blue;
+    animation: pop 0.4s cubic-bezier(.48,1.7,.87,1);
 
 
     &__author {
@@ -39,13 +38,13 @@
         right: 1em;
         display: block;
         width:0;
-        border-bottom: 1rem solid white;
+        border-bottom: 1rem solid vars.$light-color;
         border-left: 1rem solid transparent;
       }
     }
 
-    &__content {
-      background-color: $light-color;
+    &__body {
+      background-color: vars.$light-color;
       padding: 1.5em;
       display: inline-block;
       border-radius: 2rem;
@@ -55,19 +54,17 @@
 
     &--other {
       text-align: left;
-      & .message__content {
-        background: $dark-blue;
-        color: $light-blue;
+      & .message__body {
+        background: vars.$dark-blue;
+        color: vars.$light-blue;
       }
       & .message__author {
         &::after {
           left: 1em;
           right: auto;
-          border-bottom-color: $dark-blue;
+          border-bottom-color: vars.$dark-blue;
         }
       }
     }
   }
 }
-
-

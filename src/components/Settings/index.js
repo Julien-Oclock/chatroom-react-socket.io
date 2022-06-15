@@ -1,40 +1,52 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames'
+import classNames from 'classnames';
+
+import InputField from 'src/containers/Settings/InputField';
+
 import './styles.scss';
 
-import InputField from 'src/containers/settings/InputField';
-
-const Settings = ({open, openToggle, onLogin}) => {
-
-  const handleSubmit = (event) => {
+const Settings = ({ open, openToggle, onLogin, loading }) => {
+  const handleSubmitSettings = (event) => {
     event.preventDefault();
-    onLogin()
-  }
+    onLogin();
+  };
 
   return (
-    <div className={classNames('settings',{'settings--active':open})}>
-      <button type="button" onClick={openToggle} className="settings__button">+</button>
-      <form className="settings__form" onClick={handleSubmit}>
-        <InputField type="email" placeholder="mail.." inputName="email" />
-        <InputField type="password" placeholder="enter your password.." inputName="password" />
-        <button type="submit"  className="settings__submit-btn">Envoyer</button>
+    <div className={classNames('settings', { 'settings--active': open })}>
+      <button type="button" onClick={openToggle}>+</button>
+      <form onSubmit={handleSubmitSettings}>
+        <InputField
+          inputName="email"
+          type="email"
+          placeholder="Adresse email"
+        />
+        <InputField
+          inputName="password"
+          type="password"
+          autoComplete="new-password"
+          placeholder="Mot de passe"
+        />
+        <button type="submit" disabled={loading}>
+          {loading ? 'Chargement...' : 'Envoyer'}
+        </button>
       </form>
     </div>
-  )
-}
+  );
+};
 
 Settings.propTypes = {
   open: PropTypes.bool,
   openToggle: PropTypes.func,
-  onLogin : PropTypes.func
-}
+  onLogin: PropTypes.func,
+  loading : PropTypes.bool
+};
 
-Settings.defaultProps ={
+Settings.defaultProps = {
   open: false,
-  openToggle: () => {},
-  onLogin : () => {}
-  
-}
+  openToggle: () => { },
+  onLogin: () => { },
+  loading : false,
+};
 
 export default Settings;

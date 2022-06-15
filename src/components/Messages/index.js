@@ -1,45 +1,35 @@
-// import npm
-import React, {useRef, useEffect} from 'react'
+/* eslint-disable arrow-body-style */
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
+import Message from 'src/containers/Messages/Message';
 
-// import components
-import Message from './Message';
-
-// import styles
 import './styles.scss';
 
-
-
-
-function Messages({messages}) {
-  const messageContainer = useRef(null);
-
+const Messages = ({ messages }) => {
+  const messagesContainer = useRef(null);
   useEffect(() => {
-    messageContainer.current.scrollTo(0, messageContainer.current.scrollHeight);
-  },[messages]);
-
-  useRef
+    messagesContainer.current.scrollTo(0, messagesContainer.current.scrollHeight);
+  }, [messages]);
 
   return (
-    <div className="messages" ref={messageContainer}>
-    {messages.map((message)=> (
-      <Message {...message} key={message.id}/>
-    ))}
+    <div className="messages" ref={messagesContainer}>
+      {messages.map((message) => (
+        <Message {...message} key={message.id} />
+      ))}
     </div>
   );
-}
+};
 
 Messages.propTypes = {
-  messages : PropTypes.arrayOf(
+  messages: PropTypes.arrayOf(
     PropTypes.shape({
-      id : PropTypes.number.isRequired
-    })
-  )
-}
+      id: PropTypes.number.isRequired,
+    }),
+  ),
+};
 
 Messages.defaultProps = {
-  messages: []
-}
+  messages: [],
+};
 
-  
 export default Messages;

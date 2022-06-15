@@ -1,60 +1,75 @@
-@import'../../styles/vars';
+@use 'src/styles/vars';
 
-.settings{
+.settings {
   position: fixed;
-  top: 5px;
-  right: 5px;
-  z-index:2;
+  right: 10px;
+  top: 10px;
+  z-index: 2;
   display: flex;
   flex-direction: row;
-  transform : translateX(calc(100% - 60px));
-  transition : transform 1s ease-in-out;
+  transform: translateX(calc(100% - 50px));
+  transition: transform 0.5s ease-in-out;
 
-  &--active{
-    transform : translateX(0);
-    & > button{
-      transform : rotate(135deg);
+  &>button {
+    transition: transform 0.3s ease-in-out;
+    transform: scale(1);
+    display: block;
+    width: 2rem;
+    height: 2rem;
+    border: 0;
+    border-radius: 50%;
+    color: vars.$dark-purple;
+    background-color: vars.$light-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin: 0 1rem;
+
+    &:hover {
+      transform: scale(1.2);
     }
   }
 
-  &__button{
-    display : block;
-    width : 2.5rem;
-    height : 2.5rem;
-    border : 0;
-    border-radius:50%;
-    color : #7642df;
-    font-size : 24px;
-    display : flex;
-    align-items: center;
-    justify-content:center;
-    margin : 0 1rem; 
-  }
-
-  &__form{
+  form {
     display: flex;
     flex-direction: column;
 
-    & > input {
-      background-color : $light-color;
-      border : 0;
-      border-radius : 0.5rem;
-      padding : 0.8rem;
-      margin : 0.2rem 0;
+    &>input {
+      background-color: vars.$light-color;
+      border: 0;
+      border-radius: 0.5rem;
+      padding: 0.5rem;
+      margin: 0.2rem 0;
 
-      &:first-of-type{
-        margin-top : 0;
+      &:first-of-type {
+        margin-top: 0;
       }
     }
 
-    &>button{
-      background-color : #7642df;
-      border : 0;
-      color : $light-color;
-      border-radius : 0.5rem;
-      padding : 0.8rem;
-      margin : 0.2rem 0;
+    &>button {
+      background-color: vars.$dark-purple;
+      border: 0;
+      color: vars.$light-color;
+      border-radius: 0.5rem;
+      padding: 0.5rem;
+      margin: 0.2rem 0;
+
+      &:disabled{
+        opacity: 0.5;
+        background-color : rgb(66, 66, 66)
+      }
     }
   }
 
+
+  &--active {
+    transform: translateX(0);  
+    &>button {
+      transform: rotate(135deg);
+      &:hover {
+        transform: rotate(135deg) scale(1.2);
+      }
+    }
+  }
 }

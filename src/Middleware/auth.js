@@ -1,5 +1,9 @@
 import {
-  SEND_LOGIN
+  SEND_LOGIN,
+  SET_PSEUDO,
+  setPseudo,
+  SET_COLOR,
+  setColor
 } from 'src/actions'
 
 import axios from 'src/api';
@@ -14,21 +18,29 @@ import axios from 'src/api';
 * enfin dans le reducer
 */
 export default (store) => (next) => (action) => {
+  const {settings : {email, password}} = store.getState();
 
-  console.log(store);
-  console.log(action);
-  console.log(next)
   switch (action.type) {
     case SEND_LOGIN:
-      const {settings : {email, password}} = store.getState();
       // On va ici envoyer la requête Ajax
-      console.log('mail : ' + email);
-      console.log('password : ' + password);
+      //console.log('mail : ' + email);
+      //console.log('password : ' + password);
       axios.post('/login',{
         email,
         password,
-      })
+      }).then((result) =>{
+        console.log(store)
+        store.dispatch(setPseudo(result.data.pseudo))
+      });
+      next(action);
       break;
+    
+    case SET_PSEUDO :
+      axios.get(`/theme/${email}`)
+        .then((result) =>{
+          console.log(store)
+          store.dispatch(setColor(result.data.color))
+      });
 
     default:
       next(action);

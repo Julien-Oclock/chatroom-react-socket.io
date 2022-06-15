@@ -1,55 +1,50 @@
-import React, {useEffect, useRef} from 'react'
-import {Send} from 'react-feather'
-import PropTypes from 'prop-types'
+import React, { useEffect, useRef } from 'react';
+import { Send } from 'react-feather';
+import PropTypes from 'prop-types';
+
 import './styles.scss';
 
+const Form = ({ inputValue, setMessageValue, sendNewMessage }) => {
+  const inputRef = useRef(null);
+  const handleOnSubmitForm = (event) => {
+    event.preventDefault();
+    sendNewMessage();
+  };
 
-function Form({ inputValue, setMessageValue, sendNewMessage }) {
-
-  const inputRef = useRef(null)
-
-  const handleOnChange = (e) => {
-    console.log(e.target.value);
-    setMessageValue(e.target.value);
-  }
-
-  const handleSubmitForm = (e) => {
-    e.preventDefault();
-    sendNewMessage()
-
-  }
+  const handleOnInputChange = (event) => {
+    setMessageValue(event.target.value);
+  };
 
   useEffect(() => {
     inputRef.current.focus();
   }, []);
 
   return (
-    <form className="form" onSubmit={handleSubmitForm}>
-    <input 
-      className="form__input" 
-      type="text" 
-      placeholder="your message..."
-      onChange={ handleOnChange }
-      value={ inputValue }
-      ref={ inputRef }
-    />
-    <button className="form__button" type="submit">
-      <Send size={32} className='form__send'/>
-    </button>
+    <form className="form" onSubmit={handleOnSubmitForm}>
+      <input
+        type="text"
+        className="form__input"
+        value={inputValue}
+        onChange={handleOnInputChange}
+        placeholder="Saisissez votre message"
+        ref={inputRef}
+      />
+      <button type="submit" className="form__submit">
+        <Send size={32} />
+      </button>
     </form>
   );
-}
-
+};
 Form.propTypes = {
-  inputValue: PropTypes.string.isRequired,
-  setMessageValue : PropTypes.func,
-  sendNewMessage : PropTypes.func,
-}
+  inputValue: PropTypes.string,
+  setMessageValue: PropTypes.func,
+  sendNewMessage: PropTypes.func,
+};
+
 Form.defaultProps = {
   inputValue: '',
-  setMessageValue: () =>{},
-  sendNewMessage: () =>{}
-}
-
+  setMessageValue: () => { },
+  sendNewMessage: () => { },
+};
 
 export default Form;
