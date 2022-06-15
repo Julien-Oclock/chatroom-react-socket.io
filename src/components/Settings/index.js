@@ -16,7 +16,6 @@ const Settings = ({open, openToggle, onLogin}) => {
     <div className={classNames('settings',{'settings--active':open})}>
       <button type="button" onClick={openToggle} className="settings__button">+</button>
       <form className="settings__form" onClick={handleSubmit}>
-        <InputField type="text" placeholder="ton pseudo" inputName="pseudo" />
         <InputField type="email" placeholder="mail.." inputName="email" />
         <InputField type="password" placeholder="enter your password.." inputName="password" />
         <button type="submit"  className="settings__submit-btn">Envoyer</button>

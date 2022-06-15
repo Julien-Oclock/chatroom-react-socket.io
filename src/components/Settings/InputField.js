@@ -17,7 +17,6 @@ const  InputField = ({inputValue, setFieldValue, inputName,...props}) => {
       onChange = {(event) => setFieldValue(event.target.value)}
     />
   )
-      
 }
 
 InputField.propTypes = {

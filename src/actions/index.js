@@ -2,6 +2,7 @@ export const SET_MESSAGE_VALUE = 'SET_MESSAGE_VALUE';
 export const SEND_NEW_MESSAGE = 'SEND_NEW_MESSAGE';
 export const TOGGLE_SETTINGS = 'TOGGLE_SETTINGS';
 export const SET_FIELD_VALUE = 'SET_FIELD_VALUE';
+export const SEND_LOGIN = 'SEND_LOGIN';
 
 export const setMessageValue = (inputValue) =>({
   type: 'SET_MESSAGE_VALUE',
@@ -20,5 +21,8 @@ export const setFieldValue = (fieldName, value) => ({
   type: 'SET_FIELD_VALUE',
   value,
   fieldName
+})
+export const sendLogin = () => ({
+  type: 'SEND_LOGIN',
 })
 
